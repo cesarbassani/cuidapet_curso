@@ -1,4 +1,5 @@
 import 'package:cuidapetcurso/app/app_controller.dart';
+import 'package:cuidapetcurso/app/modules/main_page/main_page_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:cuidapetcurso/app/app_widget.dart';
@@ -12,7 +13,10 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, module: HomeModule()),
+        Router(
+          Modular.initialRoute,
+          child: (context, args) => MainPagePage(),
+        ),
       ];
 
   @override
