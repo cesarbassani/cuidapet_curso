@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:cuidapetcurso/app/core/dio/custom_dio.dart';
 import 'package:cuidapetcurso/app/shared/components/facebook_button.dart';
 import 'package:cuidapetcurso/app/shared/theme_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'login_controller.dart';
@@ -46,6 +48,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       width: ScreenUtil().setWidth(400),
                       fit: BoxFit.fill,
                     ),
+                    Text(DotEnv().env['profile']),
                     _buildForm(),
                   ],
                 ),
@@ -104,7 +107,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  CustomDio.authInstance.get('https://viacep.com.br/ws/01001000/json').then((res) => print(res.data));
+                },
               ),
             ),
             Padding(
