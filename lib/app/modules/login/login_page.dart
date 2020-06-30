@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cuidapetcurso/app/shared/components/facebook_button.dart';
 import 'package:cuidapetcurso/app/shared/theme_utils.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
             children: <Widget>[
               Container(
                 width: ScreenUtil.screenWidthDp,
-                height: ScreenUtil.screenHeightDp * .95,
+                height: ScreenUtil.screenHeightDp < 700 ? 800 : ScreenUtil.screenHeightDp * .95,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('lib/assets/images/login_background.png'),
@@ -35,7 +37,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: ScreenUtil.statusBarHeight + 30),
+                margin: EdgeInsets.only(top: Platform.isIOS ? ScreenUtil.statusBarHeight + 30 : ScreenUtil.statusBarHeight),
                 width: double.infinity,
                 child: Column(
                   children: <Widget>[
@@ -76,7 +78,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
             ),
             TextFormField(
               decoration: InputDecoration(
-                labelText: 'Login',
+                labelText: 'Senha',
                 labelStyle: TextStyle(
                   fontSize: 15,
                 ),
